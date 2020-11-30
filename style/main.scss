@@ -1,0 +1,23 @@
+$primary-color: #c0c0c0;
+
+$primary-background-color: #222222;
+$secondary-background-color: #333333;
+$box-background-color: #2c2c2c;
+
+@import './nav', './pageContent', './footer';
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+} 
+
+
+body{
+    background: $primary-background-color;
+    color: $primary-color;
+
+    padding: 0rem;
+    margin: 0rem;
+    width: 100%;
+}

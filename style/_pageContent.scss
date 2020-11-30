@@ -1,0 +1,123 @@
+#pageContent{
+    background: $secondary-background-color;
+    padding: 1rem;
+    padding-top: 3rem;
+
+    #mainArticle{
+        max-width: 60rem;   
+        margin-left: calc((90% - 65rem) / 2);
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+
+        h1{
+            font-size: 3rem;
+        }
+
+        #newMeal{
+            justify-content: left;
+            text-align: left;
+
+            margin-bottom: 2rem;
+
+            input,  textArea, select{
+                margin-bottom: 1rem;
+                background: $box-background-color;
+                border-color: $box-background-color;
+                color: $primary-color;
+            }
+        }
+
+        #mealPage{
+
+            justify-content: left;
+            text-align: left;
+
+            margin-bottom: 2rem;
+
+            img{
+                border-radius: 2rem;
+                width: 100%;
+            }
+
+            p{
+                max-width: 40rem;
+            }
+        }
+
+        #mealList{
+            padding: 0rem;
+            text-align: left;
+    
+            li{
+                list-style: none;
+                margin-bottom: 1rem;
+        
+                .mealPreview{
+                    text-decoration: none;
+                    color: $primary-color;
+    
+                    div{
+                        background: $box-background-color;
+                        display: flex;
+                        justify-content: left;
+                        flex-direction: row;
+                        padding: 1rem;
+        
+
+                        .mealImageContainer{
+                            width: 40%;
+                            
+                            img{
+                                border-radius: 2rem;
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+
+                        .mealMetaContainer{
+                            width: 50%;
+                            display: block;
+                            padding: 0rem 1rem 0rem 1rem;
+
+                            h2{
+                                font-size: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 50rem) {
+    #pageContent{
+        #mainArticle{
+            margin: 0rem;
+
+            #mealList{
+                li{
+                    .mealPreview{
+                        div{
+                            flex-direction: column;
+                            justify-content: center;
+                            padding: 1rem;
+                            
+                            .mealImageContainer{
+                                width: calc(100% - 2rem);
+                            }
+
+                            .mealMetaContainer{
+                                width: 70%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
