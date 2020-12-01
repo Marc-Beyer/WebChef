@@ -16,11 +16,12 @@
     window.addEventListener('scroll', function (e) {
         checkIfUserScrolled();
     });
-
+    
     //add eventlistener to navMenuBtn
-
-    document.getElementById("mobileNavButton").addEventListener("click", function(){
-        console.log("clicked mobileNamButton!");
-        $(".dropdown").toggle();
+    $( document ).ready(function() {
+        $("mobileNavButton").click(function(){
+            console.log("clicked mobileNamButton!");
+            $(".dropdown").toggle();
+        });
     });
 }

@@ -26,8 +26,10 @@
       });
 
     //add eventlistener to navMenuBtn
-    $("mobileNavButton").click(function(){
-        console.log("clicked mobileNamButton!");
-        $(".dropdown").toggle();
+    $( document ).ready(function() {
+        $("mobileNavButton").click(function(){
+            console.log("clicked mobileNamButton!");
+            $(".dropdown").toggle();
+        });
     });
 }
