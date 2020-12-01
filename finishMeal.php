@@ -36,7 +36,17 @@
     $preparationTime = intval(substr($mealTime, 0, 2)) * 60 + intval(substr($mealTime, 3, 2));
     echo $preparationTime. "<br>";
 
-    $sql = "INSERT INTO `tMeal`(`M_ID`, `name`, `preparation_text`, `preparation_time`, `MT_ID`, `U_ID`, `is_public`, `description`, 'img') VALUES (2,'$mealName','$mealPrep','$preparationTime',$mealType,0,0,'$mealDesc','$mealImg')";
+    $countSql = "SELECT COUNT(*) AS 'count' FROM `tmeal`";
+    
+    $id = -1;
+    $result = $conn->query($countSql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $id = $row["count"];
+        echo $id;
+    }
+
+    $sql = "INSERT INTO `tMeal`(`M_ID`, `name`, `preparation_text`, `preparation_time`, `MT_ID`, `U_ID`, `is_public`, `description`) VALUES ($id,'$mealName','$mealPrep','$preparationTime',$mealType,0,0,'$mealDesc')";
 
     $result = $conn->query($sql);
 
@@ -49,4 +59,5 @@
     }
 
     $conn->close();
+    //header('Location: ./index.php');
 ?>

@@ -118,9 +118,14 @@ nav{
         }
 
         ul{
-            li {
+            flex-direction: column;
+            justify-content: right;
+            text-align: right;
+
+            li{
                 display: none;
             }
+
 
             #searchbar{
                 display: none;

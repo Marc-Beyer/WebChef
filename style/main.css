@@ -123,6 +123,16 @@ nav ul #moblieNavBtn button img {
   nav #logo img {
     height: 3rem;
   }
+  nav ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: right;
+        -ms-flex-pack: right;
+            justify-content: right;
+    text-align: right;
+  }
   nav ul li {
     display: none;
   }

@@ -24,4 +24,10 @@
     $("#logo img").on( "click", function() {
         console.log( $( this ).text() );
       });
+
+    //add eventlistener to navMenuBtn
+    $("mobileNavButton").click(function(){
+        console.log("clicked mobileNamButton!");
+        $(".dropdown").toggle();
+    });
 }
