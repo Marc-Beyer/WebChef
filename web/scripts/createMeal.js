@@ -11,6 +11,7 @@ $(document).ready(function () {
             for (var _i = 0, _a = ingredientsElement.children; _i < _a.length; _i++) {
                 var ingredientsChild = _a[_i];
                 ingredientsChild.id = ingredientsChild.id.split("_")[0] + "_" + currentIngredientsNr;
+                ingredientsChild.name = ingredientsChild.name.split("_")[0] + "_" + currentIngredientsNr;
             }
             $("#form")[0].insertBefore(ingredientsElement, $("#mealPrepInputLable")[0]);
             currentIngredientsNr++;
@@ -19,5 +20,10 @@ $(document).ready(function () {
             $("#ingredients_" + (currentIngredientsNr - 1))[0].remove();
             currentIngredientsNr--;
         }
+    });
+    
+    console.log( $("#searchbarBtn"));
+    $("#searchbarBtn").click(function(){
+        console.log( $("#searchbarBtn")[0]);
     });
 });

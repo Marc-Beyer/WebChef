@@ -13,7 +13,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT `M_ID` FROM `tMeal`";
+    $sql = "SELECT `M_ID` FROM `tMeal` WHERE `is_public` = 1";
 
     $result = $conn->query($sql);
 

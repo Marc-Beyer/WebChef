@@ -1,5 +1,6 @@
 <?php include("./templates/basicTemplateStart.html"); ?>
 
+
 <div id="newMeal">
     <h1>Neues Rezept erstellen</h1>
     <form action="/finishMeal.php" method="post" id="form">
@@ -49,5 +50,7 @@
         <input type="submit" value="Rezept Erstellen">
     </form> 
 </div>
+
+<script src='./scripts/createMeal.js'></script>
 
 <?php include("./templates/basicTemplateEnd.html"); ?>

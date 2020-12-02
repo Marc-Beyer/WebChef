@@ -17,9 +17,42 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM `tMeal` WHERE `is_public`=1";
+        //Search
+        $search = $_GET["search"];
+        echo $search;
+        if(is_null($search)){
+            $search = -1;
+        }else{
+            $search = $conn->real_escape_string($search);
+        }
 
-        $result = $conn->query($sql);
+        //Get the meal type
+        $mealType = $_GET["type"];
+        echo $mealType;
+        if(is_null($mealType)){
+            $mealType = -1;
+        }else{
+            $mealType = intval($mealType);
+        }
+
+        $sql = "SELECT * FROM `tMeal` WHERE `is_public` = 1 ORDER BY `name` DESC";
+        $sqlWithType = "SELECT * FROM `tMeal` WHERE `is_public` = 1 AND `MT_ID` = $mealType ORDER BY `name` DESC";
+        $sqlWithSearch = "SELECT * FROM `tMeal` WHERE `is_public` = 1 AND `name` LIKE '%$search%' ORDER BY `name` DESC";
+        $sqlWithTypeAndSearch = "SELECT * FROM `tMeal` WHERE `is_public` = 1 AND `MT_ID` = $mealType AND `name` LIKE '%$search%' ORDER BY `name` DESC";
+
+        if($mealType == -1){
+            if($search == -1){
+                $result = $conn->query($sql);
+            }else{
+                $result = $conn->query($sqlWithSearch);
+            }
+        }else{
+            if($search == -1){
+                $result = $conn->query($sqlWithType);
+            }else{
+                $result = $conn->query($sqlWithTypeAndSearch);
+            }
+        }
 
         $template = file_get_contents('./templates/mealPreviewTemplate.html');
 

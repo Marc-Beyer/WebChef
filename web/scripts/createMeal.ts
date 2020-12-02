@@ -12,6 +12,7 @@ $( document ).ready(function() {
             ingredientsElement.id = ingredientsElement.id.split("_")[0] + "_" + currentIngredientsNr;
             for (let ingredientsChild of ingredientsElement.children) {
                 ingredientsChild.id = ingredientsChild.id.split("_")[0] + "_" + currentIngredientsNr;
+                ingredientsChild.name = ingredientsChild.name.split("_")[0] + "_" + currentIngredientsNr;
             }
             $("#form")[0].insertBefore(ingredientsElement, $("#mealPrepInputLable")[0]);
             currentIngredientsNr++;

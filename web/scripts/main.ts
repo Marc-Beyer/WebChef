@@ -29,8 +29,6 @@
     
     //add eventlistener to navMenuBtn
     $( document ).ready(function() {
-        console.log("ready!");
-        console.log($(".dropdown:not(#mobileNavBtn)"));
         $("#mobileNavButton").click(function(){
             if(!isNavOpen){
                 $(".dropdown").show();
@@ -43,6 +41,11 @@
                 $("#mobileNavBtn").show();
             }
             isNavOpen = !isNavOpen;
+        });
+
+        console.log( $("#searchbarBtn"));
+        $("#searchbarBtn").click(function(){
+            console.log( $("#searchbarBtn")[0]);
         });
     });
 }
