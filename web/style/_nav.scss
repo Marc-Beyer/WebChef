@@ -94,6 +94,10 @@ nav{
                 background: $secondary-background-color;
                 color: $primary-color;
                 border: 2px solid $box-background-color;
+
+                img{
+                    height: 1rem;
+                }
             }
         }
 
