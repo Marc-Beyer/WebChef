@@ -97,11 +97,13 @@ nav{
             }
         }
 
-        #moblieNavBtn{
+        #mobileNavBtn{
             display: none;
+
             button{
                 background: transparent;
                 border: none;
+                cursor: pointer;
                 
                 img{
                     height: 2rem;
@@ -122,8 +124,13 @@ nav{
             justify-content: right;
             text-align: right;
 
-            li{
+            .dropdown{
                 display: none;
+
+                .subMenu{   
+                    display: none;
+                    position: initial;
+                }
             }
 
 
@@ -131,7 +138,7 @@ nav{
                 display: none;
             }
             
-            #moblieNavBtn{
+            #mobileNavBtn{
                 display: block;
             }
         }

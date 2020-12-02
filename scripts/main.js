@@ -16,12 +16,28 @@
     window.addEventListener('scroll', function (e) {
         checkIfUserScrolled();
     });
-    
+    //add listener to the moblieNavBtn
+    $("#logo img").on("click", function () {
+        console.log($(this).text());
+    });
+    var isNavOpen = false;
     //add eventlistener to navMenuBtn
-    $( document ).ready(function() {
-        $("mobileNavButton").click(function(){
-            console.log("clicked mobileNamButton!");
-            $(".dropdown").toggle();
+    $(document).ready(function () {
+        console.log("ready!");
+        console.log($(".dropdown:not(#mobileNavBtn)"));
+        $("#mobileNavButton").click(function () {
+            if (!isNavOpen) {
+                $(".dropdown").show();
+                $(".subMenu").show();
+                $(".subMenu li").show();
+            }
+            else {
+                $(".dropdown:not(#mobileNavBtn)").hide();
+                $(".subMenu").hide();
+                $(".subMenu li").hide();
+                $("#mobileNavBtn").show();
+            }
+            isNavOpen = !isNavOpen;
         });
     });
 }

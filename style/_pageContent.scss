@@ -28,6 +28,10 @@
                 border-color: $box-background-color;
                 color: $primary-color;
             }
+
+            textarea{
+                width: 100%;
+            }
         }
 
         #mealPage{
@@ -93,6 +97,15 @@
     }
 }
 
+@media screen and (max-width: 75rem) {
+    #pageContent{
+        padding-top: 6rem;
+
+        #mainArticle{
+            margin: 0rem;
+        }
+    }
+}
 
 @media screen and (max-width: 50rem) {
     #pageContent{

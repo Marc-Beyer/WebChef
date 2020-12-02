@@ -20,6 +20,11 @@
                 <img src="./res/imgs/logo.svg" alt="logo">
             </div>
             <ul id="desktopMenu">
+                <li class="dropdown" id="mobileNavBtn">
+                    <button id="mobileNavButton">
+                        <img src="./res/imgs/burgerMenu.svg" alt="logo">
+                    </button>
+                </li>
                 <li class="dropdown">
                     <a href="index.php" class="mainMenu">Rezepte</a>
                     <ul class="subMenu">
@@ -53,11 +58,6 @@
                     <input type="text" id="fname" name="fname">
                     <button>search</button>
                 </li>
-                <li class="dropdown" id="moblieNavBtn">
-                    <button>
-                        <img src="./res/imgs/burgerMenu.svg" alt="logo">
-                    </button>
-                </li>
             </ul>
         </nav>
         <div id="pageContent">
@@ -84,7 +84,7 @@
                         <input type="text" id="mealTimeInput" name="mealTimeInput" min="00:01" value="00:01" required="required" pattern="[0-9]{2}:[0-9]{2}"><br>
 
                         <label for="mealDescInput">Kurze beschreibung des Rezepts:</label><br>
-                        <textarea id="mealDescInput" name="mealDescInput" rows="4" cols="70" required="required">...</textarea><br>
+                        <textarea id="mealDescInput" name="mealDescInput" rows="7" required="required">...</textarea><br>
 
                         <label for="mealNrInput">Für wie viel Protionen ist das Rezept:</label><br>
                         <input type="number" step="1" value="1" min="1" id="mealNrInput" name="mealNrInput" required="required"><br>
@@ -106,7 +106,7 @@
                         </div>
 
                         <label for="mealPrepInput" id="mealPrepInputLable">Zubereitung:</label><br>
-                        <textarea id="mealPrepInput" name="mealPrepInput" rows="20" cols="70" required="required">...</textarea><br>
+                        <textarea id="mealPrepInput" name="mealPrepInput" rows="20" required="required">...</textarea><br>
 
                         <input type="submit" value="Rezept Erstellen">
                     </form> 
