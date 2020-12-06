@@ -9,6 +9,14 @@ const mealNr = document.getElementById("mealNrInput");
 const ingredientsNr = document.getElementById("ingredientsNr");
 const mealPrep = document.getElementById("mealPrepInput");
 
+var imgFile = undefined;
+
+function blobToFile(theBlob, fileName){
+    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
+}
 
 fileInput.addEventListener("change", function(e){
     let file = e.target.files[0];
@@ -28,8 +36,14 @@ fileInput.addEventListener("change", function(e){
                 canvas.width = 1000;
                 canvas.height = canvas.width * (img.height / img.width);
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                var file =  canvas.toDataURL('image/jpeg', 0.5);
-                sendPostRequest(file);
+                //imgFile = blobToFile(canvas.toDataURL('image/jpeg', 0.5), "img.jpg");
+                //console.log("imgFile", imgFile.name);
+                canvas.toBlob(function(blob){
+                    imgFile = blobToFile(blob, "img.jpg");
+                    sendPostRequest();
+                    console.log("imgFile", imgFile);
+                    console.log("imgFilename", imgFile.name);
+                }, 'image/jpeg', 0.95);
             };
             img.src = e.target.result;
         };
@@ -38,8 +52,17 @@ fileInput.addEventListener("change", function(e){
 });
 
 // Send a POST-request
-function sendPostRequest(data){
-    var test = "This is a test";
+function sendPostRequest(){
+    var formData = new FormData();
+    formData.append('mealNameInput', mealName.value);
+    formData.append('mealTypeInput', mealType.value);
+    formData.append('mealTimeInput', mealTime.value);
+    formData.append('mealDescInput', mealDesc.value);
+    formData.append('mealNInput', mealNr.value);
+    formData.append('ingredientsNr', ingredientsNr.value);
+    formData.append('mealPrepInput', mealPrep.value);
+    formData.append('file', imgFile);
+
     var json = JSON.stringify(
         {
             mealName : mealName.value,
@@ -49,16 +72,16 @@ function sendPostRequest(data){
             mealNr : mealNr.value,
             ingredientsNr : ingredientsNr.value,
             mealPrep : mealPrep.value,
-            file : data
+            file : imgFile
         }
     );
     console.log("json", json);
 
     var xhRequest = new XMLHttpRequest();
-    xhRequest.open("POST", "./test.php", true);
-    xhRequest.setRequestHeader('Content-Type', 'application/json');
+    xhRequest.open("POST", "./finishMeal.php", true);
+    //xhRequest.setRequestHeader('Content-Type', 'application/json');
     xhRequest.onreadystatechange = (e) => {
         console.log(xhRequest.responseText);
       }
-    xhRequest.send(json);
+    xhRequest.send(formData);
 }

@@ -127,7 +127,10 @@
     function uploadImage(){
         $target_dir = "res/uploads/";
         $target_file = generateRandomString(20);
-        $imageFileType = strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION));
+        //$imageFileType = strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION));
+        $imageFileType = $_FILES["file"]["type"];
+        $imageFileType = str_replace("image/", "", $imageFileType);
+        echo "imageFileType $imageFileType<br>";
 
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
