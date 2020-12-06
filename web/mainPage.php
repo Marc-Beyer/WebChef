@@ -18,21 +18,17 @@
         }
 
         //Search
-        $search = $_GET["search"];
-        echo $search;
-        if(is_null($search)){
-            $search = -1;
+        if(isset($_GET["search"])) {
+            $search = $conn->real_escape_string($_GET["search"]);
         }else{
-            $search = $conn->real_escape_string($search);
+            $search = -1;
         }
 
         //Get the meal type
-        $mealType = $_GET["type"];
-        echo $mealType;
-        if(is_null($mealType)){
-            $mealType = -1;
+        if(isset($_GET["type"])) {
+            $mealType = intval($_GET["type"]);
         }else{
-            $mealType = intval($mealType);
+            $mealType = -1;
         }
 
         $sql = "SELECT * FROM `tMeal` WHERE `is_public` = 1 ORDER BY `name` DESC";
@@ -65,11 +61,11 @@
                 $preparation_time_min = $preparation_time % 60;
                 $echoString = preg_replace("~mealPrepTimePlaceholder~", " Dauer: ". $preparation_time_h. ":". $preparation_time_min. "h", $echoString);
                 $echoString = preg_replace("~mealPrepTextPlaceholder~", $row["description"], $echoString);
-                $imgBlob = $row["img"];
-                if(is_null ($imgBlob)){
+                $imgPath = $row["img"];
+                if(is_null ($imgPath)){
                     $echoString = preg_replace("~mealPlaceholderImg~", "./res/imgs/logo.svg" , $echoString);
                 }else{
-                    $echoString = preg_replace("~mealPlaceholderImg~", "data:image/jpeg;base64,". base64_encode($imgBlob) , $echoString);
+                    $echoString = preg_replace("~mealPlaceholderImg~", "./$imgPath", $echoString);
                 }
                 echo($echoString);
             }

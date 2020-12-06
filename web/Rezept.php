@@ -31,11 +31,11 @@
             $preparation_time_min = $preparation_time % 60;
             $template = preg_replace("~mealPrepTimePlaceholder~", " Dauer: ". $preparation_time_h. ":". $preparation_time_min. "h", $template);
             $template = preg_replace("~mealPrepTextPlaceholder~", $row["preparation_text"], $template);
-            $imgBlob = $row["img"];
-            if(is_null ($imgBlob)){
+            $imgPath = $row["img"];
+            if(is_null ($imgPath)){
                 $template = preg_replace("~mealPlaceholderImg~", "./res/imgs/logo.svg" , $template);
             }else{
-                $template = preg_replace("~mealPlaceholderImg~", "data:image/jpeg;base64,". base64_encode($imgBlob) , $template);
+                $template = preg_replace("~mealPlaceholderImg~", "./$imgPath", $template);
             }
         }
     } else {

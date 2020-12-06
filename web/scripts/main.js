@@ -23,8 +23,16 @@
     var isNavOpen = false;
     //add eventlistener to navMenuBtn
     $(document).ready(function () {
-        console.log("ready!");
-        console.log($(".dropdown:not(#mobileNavBtn)"));
+        //Add event to search
+        $("#searchbarBtn").click(function () {
+            window.open("./index.php?search=" + $("#searchInput")[0].value, "_self");
+        });
+        $("#searchInput").keyup(function (e) {
+            if (e.keyCode == 13) {
+                window.open("./index.php?search=" + $("#searchInput")[0].value, "_self");
+            }
+        });
+        //Add event to mobileNavButton
         $("#mobileNavButton").click(function () {
             if (!isNavOpen) {
                 $(".dropdown").show();

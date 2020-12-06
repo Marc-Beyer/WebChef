@@ -29,6 +29,17 @@
     
     //add eventlistener to navMenuBtn
     $( document ).ready(function() {
+        //Add event to search
+        $("#searchbarBtn").click(function(){
+            window.open("./index.php?search=" + $("#searchInput")[0].value, "_self");
+        });
+        $("#searchInput").keyup(function(e){
+            if(e.keyCode == 13){
+                window.open("./index.php?search=" + $("#searchInput")[0].value, "_self");
+            }
+        });
+
+        //Add event to mobileNavButton
         $("#mobileNavButton").click(function(){
             if(!isNavOpen){
                 $(".dropdown").show();
@@ -41,11 +52,6 @@
                 $("#mobileNavBtn").show();
             }
             isNavOpen = !isNavOpen;
-        });
-
-        console.log( $("#searchbarBtn"));
-        $("#searchbarBtn").click(function(){
-            console.log( $("#searchbarBtn")[0]);
         });
     });
 }

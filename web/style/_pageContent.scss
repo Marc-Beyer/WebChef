@@ -5,7 +5,7 @@
 
     #mainArticle{
         max-width: 60rem;   
-        margin-left: calc((90% - 65rem) / 2);
+        margin: auto;
         
         display: flex;
         flex-direction: column;
@@ -100,10 +100,6 @@
 @media screen and (max-width: 75rem) {
     #pageContent{
         padding-top: 6rem;
-
-        #mainArticle{
-            margin: 0rem;
-        }
     }
 }
 

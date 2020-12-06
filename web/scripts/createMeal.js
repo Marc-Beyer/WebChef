@@ -21,9 +21,4 @@ $(document).ready(function () {
             currentIngredientsNr--;
         }
     });
-    
-    console.log( $("#searchbarBtn"));
-    $("#searchbarBtn").click(function(){
-        console.log( $("#searchbarBtn")[0]);
-    });
 });

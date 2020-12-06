@@ -53,7 +53,7 @@ nav ul .dropdown .mainMenu {
 }
 
 nav ul .dropdown .active {
-  border-bottom: 4px solid #333333;
+  border-bottom: 4px solid #c0c0c0;
   padding-bottom: calc(1rem - 3px);
 }
 
@@ -161,7 +161,7 @@ nav ul #mobileNavBtn button img {
 
 #pageContent #mainArticle {
   max-width: 60rem;
-  margin-left: calc((90% - 65rem) / 2);
+  margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -268,9 +268,6 @@ nav ul #mobileNavBtn button img {
 @media screen and (max-width: 75rem) {
   #pageContent {
     padding-top: 6rem;
-  }
-  #pageContent #mainArticle {
-    margin: 0rem;
   }
 }
 

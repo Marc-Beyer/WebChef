@@ -2,6 +2,11 @@ var currentIngredientsNr : number = 1;
 
 $( document ).ready(function() {
     console.log( "document ready!" );
+    var fd = new FormData();
+    console.log("fd ", fd);
+    fd.append('fname', 'test.wav');
+    console.log("fd ", fd);
+
     var ingredientsNrElement = $("#ingredientsNr");
     ingredientsNrElement.change( function() {
         var newIngredientsNr : number = ingredientsNrElement[0].value;

@@ -1,14 +1,16 @@
 <?php include("./templates/basicTemplateStart.html"); ?>
 
-
 <div id="newMeal">
     <h1>Neues Rezept erstellen</h1>
-    <form action="/finishMeal.php" method="post" id="form">
+    <form action="./finishMeal.php" method="post" id="form" enctype="multipart/form-data">
         <label for="mealNameInput">Rezept Name:</label><br>
-        <input type="text" id="mealNameInput" name="mealNameInput" required="required"><br>
+        <input type="text" id="mealNameInput" name="mealNameInput"><br>
 
         <label for="mealImgInput">Bild:</label><br>
-        <input type="file" id="mealImgInput"><br>
+        <input type="hidden" id="hidden" name="file" onsubmit="submit();">
+        <canvas id="resizeCanvas" width="200" height="100" hidden="">
+        </canvas> 
+        <input type="file" id="file" name="fileOrg"><br>
         
         <label for="mealTypeInput">Art des Rezepts:</label><br>
         <select id="mealTypeInput" name="mealTypeInput" required="required">
@@ -47,10 +49,11 @@
         <label for="mealPrepInput" id="mealPrepInputLable">Zubereitung:</label><br>
         <textarea id="mealPrepInput" name="mealPrepInput" rows="20" required="required">...</textarea><br>
 
-        <input type="submit" value="Rezept Erstellen">
+        <input type="submit" value="Rezept Erstellen" name="submit">
     </form> 
 </div>
 
 <script src='./scripts/createMeal.js'></script>
+<script src='./scripts/resizeImage.js'></script>
 
 <?php include("./templates/basicTemplateEnd.html"); ?>
