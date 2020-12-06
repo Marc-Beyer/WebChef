@@ -62,6 +62,11 @@ function sendPostRequest(){
     formData.append('ingredientsNr', ingredientsNr.value);
     formData.append('mealPrepInput', mealPrep.value);
     formData.append('file', imgFile);
+    for (let index = 0; index < ingredientsNr.value; index++) {
+        formData.append("ingredientQuantity_" + index, document.getElementById("ingredientQuantity_" + index).value);
+        formData.append("ingredientUnit_" + index, document.getElementById("ingredientUnit_" + index).value);
+        formData.append("ingredientName_" + index, document.getElementById("ingredientName_" + index).value);
+    }
 
     var json = JSON.stringify(
         {
