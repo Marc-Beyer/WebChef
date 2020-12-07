@@ -13,7 +13,7 @@ $(document).ready(function () {
                 ingredientsChild.id = ingredientsChild.id.split("_")[0] + "_" + currentIngredientsNr;
                 ingredientsChild.name = ingredientsChild.name.split("_")[0] + "_" + currentIngredientsNr;
             }
-            $("#form")[0].insertBefore(ingredientsElement, $("#mealPrepInputLable")[0]);
+            $("#newMeal")[0].insertBefore(ingredientsElement, $("#mealPrepInputLable")[0]);
             currentIngredientsNr++;
         }
         while (currentIngredientsNr > newIngredientsNr) {

@@ -1,7 +1,9 @@
 <?php
-    echo "<pre>"; 
+    function exceptions_error_handler($severity, $message, $filename, $lineno) {
+        echo"($message, 0, $severity, $filename, $lineno)";
+    }
 
-    print_r($_FILES); 
+    set_error_handler('exceptions_error_handler');
 
     //login-data
     $servername = "localhost";
@@ -20,25 +22,17 @@
     $mealImgName = uploadImage();
     if(strlen($mealImgName) <= 5){
         echo "error #$mealImgName occurred!";
-    }else{
-        echo "the image has been uploaded as $mealImgName<br>";
     }
 
-    $mealName = $conn->real_escape_string($_POST["mealNameInput"]);
+    $mealName = makeStrSafe($_POST["mealNameInput"], $conn);
     $mealType = intval($_POST["mealTypeInput"]);
-    $mealTime = $conn->real_escape_string($_POST["mealTimeInput"]);
-    $mealDesc = nl2br2($conn->real_escape_string($_POST["mealDescInput"]));
-    $mealNr = $conn->real_escape_string($_POST["mealNrInput"]);
-    $ingredientsNr = $conn->real_escape_string($_POST["ingredientsNr"]);
-    $mealPrep = nl2br2($conn->real_escape_string($_POST["mealPrepInput"]));
-
-    echo "<br><br>";
-    echo "mealName: $mealName<br>";
-    echo "mealPrep: $mealPrep<br><br>";
-    echo "mealTime: $mealTime<br><br>";
+    $mealTime = makeStrSafe($_POST["mealTimeInput"], $conn);
+    $mealDesc = makeStrSafe($_POST["mealDescInput"], $conn);
+    $mealNr = intval($_POST["mealNrInput"]);
+    $ingredientsNr = intval($_POST["ingredientsNr"]);
+    $mealPrep = makeStrSafe($_POST["mealPrepInput"], $conn);
 
     $preparationTime = intval(substr($mealTime, 0, 2)) * 60 + intval(substr($mealTime, 3, 2));
-    echo "preparationTime: $preparationTime<br>";
 
     $countSql = "SELECT COUNT(*) AS 'count' FROM `tMeal`";
     $count2Sql = "SELECT COUNT(*) AS 'count' FROM `tIngredients`";
@@ -49,7 +43,6 @@
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $mID = $row["count"];
-        echo "mealID: $mID<br><br>";
     }
     
     //Insert new meal into table
@@ -59,18 +52,13 @@
         echo "Ein Fehler ist aufgetreten :(";
     }
 
-
-    echo $ingredientsNr. "<br>";
-
     //Add all ingredience
     for ($i=0; $i < $ingredientsNr; $i++) { 
         //Get post-data
-        $ingredientQuantity = $conn->real_escape_string($_POST["ingredientQuantity_$i"]);
-        $ingredientUnit = $conn->real_escape_string($_POST["ingredientUnit_$i"]);
-        $ingredientName = $conn->real_escape_string($_POST["ingredientName_$i"]);
+        $ingredientQuantity = makeStrSafe($_POST["ingredientQuantity_$i"], $conn);
+        $ingredientUnit = makeStrSafe($_POST["ingredientUnit_$i"], $conn);
+        $ingredientName = makeStrSafe($_POST["ingredientName_$i"], $conn);
         $ingredientName = ucfirst($ingredientName);
-
-        echo "$ingredientsNr $ingredientQuantity  $ingredientUnit $ingredientName<br>";
 
         $sqlGetIID = "SELECT `I_ID` FROM `tIngredients` WHERE `name` = '$ingredientName'";
         $iID = -1;
@@ -78,19 +66,15 @@
         $result = $conn->query($sqlGetIID);
 
         if ($result->num_rows > 0){
-            echo "get the i_id<br>";
             //get the i_id
             $row = $result->fetch_assoc();
             $iID = $row["I_ID"];
-            echo "id: $iID<br>";
         }else{
-            echo "Serach for a new id<br>";
             //Serach for a new id
             $result = $conn->query($count2Sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()){
                     $iID = $row["count"];
-                    echo "id: $iID<br>";
                 }
             }
 
@@ -101,16 +85,6 @@
         $sqlGetIID = "INSERT INTO `tRecipes`(`M_ID`, `I_ID`, `quantity`, `UN_ID`, `meal_nr`, `name`) VALUES ('$mID','$iID','$ingredientQuantity','$ingredientUnit','$mealNr','das Rezept')";
         $result = $conn->query($sqlGetIID);
     }
-
-    $conn->close();
-    //header('Location: ./index.php');
-
-    function nl2br2($string) {
-        $string = str_replace(array("\r\n", "\r", "\n"), "<br />", $string);
-        return $string;
-    } 
-    
-   echo "</pre>"; 
 
    // Get a random string with length '$length'
     function generateRandomString($length = 10) {
@@ -130,7 +104,6 @@
         //$imageFileType = strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION));
         $imageFileType = $_FILES["file"]["type"];
         $imageFileType = str_replace("image/", "", $imageFileType);
-        echo "imageFileType $imageFileType<br>";
 
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
@@ -166,4 +139,20 @@
             return "5";
         }
     }
+
+    function makeStrSafe($string, $conn){
+        echo $string;
+        $string = str_replace("<", "&lt;", $string);
+        $string = str_replace(">", "&gt;", $string);
+        $string = str_replace("\"", "&quot;", $string);
+        $string = str_replace("\'", "&apos;", $string);
+        $string = str_replace("\&", "&amp;", $string);
+        $string = str_replace("\$", "&#36;", $string);
+        $string = $conn->real_escape_string($string);
+        $string = str_replace(array("\\r\\n", "\\r", "\\n"), "<br>", $string);
+        echo $string;
+        return $string;
+    }
+
+    $conn->close();
 ?>

@@ -8,6 +8,7 @@ const mealDesc = document.getElementById("mealDescInput");
 const mealNr = document.getElementById("mealNrInput");
 const ingredientsNr = document.getElementById("ingredientsNr");
 const mealPrep = document.getElementById("mealPrepInput");
+const createBtn = document.getElementById("createBtn");
 
 var imgFile = undefined;
 
@@ -17,6 +18,10 @@ function blobToFile(theBlob, fileName){
     theBlob.name = fileName;
     return theBlob;
 }
+
+createBtn.addEventListener("click", function(e){
+    sendPostRequest();
+});
 
 fileInput.addEventListener("change", function(e){
     let file = e.target.files[0];
@@ -40,7 +45,6 @@ fileInput.addEventListener("change", function(e){
                 //console.log("imgFile", imgFile.name);
                 canvas.toBlob(function(blob){
                     imgFile = blobToFile(blob, "img.jpg");
-                    sendPostRequest();
                     console.log("imgFile", imgFile);
                     console.log("imgFilename", imgFile.name);
                 }, 'image/jpeg', 0.95);
@@ -58,7 +62,7 @@ function sendPostRequest(){
     formData.append('mealTypeInput', mealType.value);
     formData.append('mealTimeInput', mealTime.value);
     formData.append('mealDescInput', mealDesc.value);
-    formData.append('mealNInput', mealNr.value);
+    formData.append('mealNrInput', mealNr.value);   
     formData.append('ingredientsNr', ingredientsNr.value);
     formData.append('mealPrepInput', mealPrep.value);
     formData.append('file', imgFile);
