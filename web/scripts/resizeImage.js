@@ -91,6 +91,11 @@ function sendPostRequest(){
     //xhRequest.setRequestHeader('Content-Type', 'application/json');
     xhRequest.onreadystatechange = (e) => {
         console.log(xhRequest.responseText);
-      }
+        if(xhRequest.responseText.length > 1){
+            alert(xhRequest.responseText);
+        }else{
+            window.open("./index.php", "_self");
+        }
+    }
     xhRequest.send(formData);
 }

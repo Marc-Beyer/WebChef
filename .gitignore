@@ -1,3 +1,5 @@
 phpMyAdmin
+web/phpMyAdmin
 node_modules
 package-lock.json
+web/res/uploads

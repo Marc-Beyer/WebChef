@@ -1,6 +1,6 @@
 <?php
     function exceptions_error_handler($severity, $message, $filename, $lineno) {
-        echo"($message, 0, $severity, $filename, $lineno)";
+        //echo"($message, 0, $severity, $filename, $lineno)";
     }
 
     set_error_handler('exceptions_error_handler');
@@ -141,7 +141,6 @@
     }
 
     function makeStrSafe($string, $conn){
-        echo $string;
         $string = str_replace("<", "&lt;", $string);
         $string = str_replace(">", "&gt;", $string);
         $string = str_replace("\"", "&quot;", $string);
@@ -150,7 +149,6 @@
         $string = str_replace("\$", "&#36;", $string);
         $string = $conn->real_escape_string($string);
         $string = str_replace(array("\\r\\n", "\\r", "\\n"), "<br>", $string);
-        echo $string;
         return $string;
     }
 
