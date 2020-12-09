@@ -1,5 +1,5 @@
 nav{
-    background: #222222;
+    background: $primary-background-color;
     position: fixed;
 
     padding: 0rem;
@@ -9,7 +9,7 @@ nav{
 
     #logo{
         position: absolute;
-        background: #222222;
+        background:$primary-background-color;
         border-radius: 4rem;
         padding: 1rem;
         padding-right: 2.5rem;

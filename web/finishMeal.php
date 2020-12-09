@@ -18,11 +18,14 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Get the image and check if the upload was successfull
-    $mealImgName = uploadImage();
-    if(strlen($mealImgName) <= 2){
-        echo "error #$mealImgName occurred!";
-        $mealImgName = NULL;
+    //Check if an image is uploaded
+    if(isset($_FILES["file"])){
+        // Get the image and check if the upload was successfull
+        $mealImgName = uploadImage();
+        if(strlen($mealImgName) <= 2){
+            echo "error #$mealImgName occurred!";
+            $mealImgName = NULL;
+        }
     }
 
     $mealName = makeStrSafe($_POST["mealNameInput"], $conn);

@@ -1,5 +1,5 @@
 nav {
-  background: #222222;
+  background: #ffffff;
   position: fixed;
   padding: 0rem;
   margin: 0rem;
@@ -9,7 +9,7 @@ nav {
 
 nav #logo {
   position: absolute;
-  background: #222222;
+  background: #ffffff;
   border-radius: 4rem;
   padding: 1rem;
   padding-right: 2.5rem;
@@ -177,6 +177,7 @@ nav ul #mobileNavBtn button img {
 
 #pageContent #mainArticle h1 {
   font-size: 3rem;
+  color: #1bc400;
 }
 
 #pageContent #mainArticle #newMeal {
