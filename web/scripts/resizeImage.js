@@ -94,7 +94,7 @@ function sendPostRequest(){
         if(xhRequest.responseText.length > 1){
             alert(xhRequest.responseText);
         }else{
-            window.open("./index.php", "_self");
+            //window.open("./index.php", "_self");
         }
     }
     xhRequest.send(formData);

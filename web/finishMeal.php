@@ -20,8 +20,9 @@
 
     // Get the image and check if the upload was successfull
     $mealImgName = uploadImage();
-    if(strlen($mealImgName) <= 5){
+    if(strlen($mealImgName) <= 2){
         echo "error #$mealImgName occurred!";
+        $mealImgName = NULL;
     }
 
     $mealName = makeStrSafe($_POST["mealNameInput"], $conn);
