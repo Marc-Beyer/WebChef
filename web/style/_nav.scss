@@ -15,7 +15,7 @@ nav{
         padding-right: 2.5rem;
         padding-left: 5rem;
         margin-left: -4rem;
-        box-shadow: 0px 1px 28px $primary-background-color;
+        box-shadow: 0px 1px 28px $box-shadow-background-color;
 
         img{
             height: 5rem;
@@ -30,7 +30,7 @@ nav{
         flex-direction: row;
         justify-content: flex-end;
 
-        box-shadow: 0px 1px 28px $primary-background-color;
+        box-shadow: 0px 1px 28px $box-shadow-background-color;
     
         .dropdown{
             list-style: none;
@@ -134,12 +134,23 @@ nav{
                 .subMenu{   
                     display: none;
                     position: initial;
+                    background-color: $primary-background-color;
+                    border-right: 4px solid $primary-color;
+                    padding: 0 1rem 0 0;
+                    margin: 1rem;
                 }
             }
 
 
             #searchbar{
                 display: none;
+                input{
+                    height: 2rem;
+                }
+                
+                button{
+                    height: 2rem;
+                }
             }
             
             #mobileNavBtn{

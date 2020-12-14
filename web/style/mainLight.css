@@ -1,5 +1,5 @@
 nav {
-  background: #ffffff;
+  background: #EEE2dc;
   position: fixed;
   padding: 0rem;
   margin: 0rem;
@@ -9,14 +9,14 @@ nav {
 
 nav #logo {
   position: absolute;
-  background: #ffffff;
+  background: #EEE2dc;
   border-radius: 4rem;
   padding: 1rem;
   padding-right: 2.5rem;
   padding-left: 5rem;
   margin-left: -4rem;
-  -webkit-box-shadow: 0px 1px 28px #ffffff;
-          box-shadow: 0px 1px 28px #ffffff;
+  -webkit-box-shadow: 0px 1px 28px none;
+          box-shadow: 0px 1px 28px none;
 }
 
 nav #logo img {
@@ -36,8 +36,8 @@ nav ul {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  -webkit-box-shadow: 0px 1px 28px #ffffff;
-          box-shadow: 0px 1px 28px #ffffff;
+  -webkit-box-shadow: 0px 1px 28px none;
+          box-shadow: 0px 1px 28px none;
 }
 
 nav ul .dropdown {
@@ -48,23 +48,23 @@ nav ul .dropdown {
 
 nav ul .dropdown .mainMenu {
   text-decoration: none;
-  color: #000000;
+  color: #123c69;
   padding: 1rem;
 }
 
 nav ul .dropdown .active {
-  border-bottom: 4px solid #000000;
+  border-bottom: 4px solid #123c69;
   padding-bottom: calc(1rem - 3px);
 }
 
 nav ul .dropdown .subMenu {
   display: none;
   position: absolute;
-  background-color: #dddddd;
+  background-color: #EEE2dc;
   padding: 1rem;
-  border-bottom: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #EEE2dc;
+  border-left: 2px solid #EEE2dc;
+  border-right: 2px solid #EEE2dc;
 }
 
 nav ul .dropdown .subMenu li {
@@ -74,7 +74,7 @@ nav ul .dropdown .subMenu li {
 
 nav ul .dropdown .subMenu li a {
   text-decoration: none;
-  color: #000000;
+  color: #123c69;
 }
 
 nav ul .dropdown:hover .subMenu {
@@ -82,7 +82,7 @@ nav ul .dropdown:hover .subMenu {
 }
 
 nav ul .dropdown:hover .mainMenu {
-  background-color: #dddddd;
+  background-color: #EEE2dc;
 }
 
 nav ul #searchbar {
@@ -95,15 +95,15 @@ nav ul #searchbar {
 }
 
 nav ul #searchbar input {
-  background: #dddddd;
-  color: #000000;
-  border: 2px solid #dcdcdc;
+  background: #EEE2dc;
+  color: #123c69;
+  border: 2px solid #edc7b7;
 }
 
 nav ul #searchbar button {
-  background: #dddddd;
-  color: #000000;
-  border: 2px solid #dcdcdc;
+  background: #EEE2dc;
+  color: #123c69;
+  border: 2px solid #edc7b7;
 }
 
 nav ul #searchbar button img {
@@ -144,9 +144,19 @@ nav ul #mobileNavBtn button img {
   nav ul .dropdown .subMenu {
     display: none;
     position: initial;
+    background-color: #EEE2dc;
+    border-right: 4px solid #123c69;
+    padding: 0 1rem 0 0;
+    margin: 1rem;
   }
   nav ul #searchbar {
     display: none;
+  }
+  nav ul #searchbar input {
+    height: 2rem;
+  }
+  nav ul #searchbar button {
+    height: 2rem;
   }
   nav ul #mobileNavBtn {
     display: block;
@@ -154,7 +164,7 @@ nav ul #mobileNavBtn button img {
 }
 
 #pageContent {
-  background: #dddddd;
+  background: #EEE2dc;
   padding: 1rem;
   padding-top: 3rem;
 }
@@ -177,7 +187,40 @@ nav ul #mobileNavBtn button img {
 
 #pageContent #mainArticle h1 {
   font-size: 3rem;
-  color: #1bc400;
+  color: #ac3b61;
+}
+
+#pageContent #mainArticle table {
+  min-width: 70%;
+  border-collapse: collapse;
+}
+
+#pageContent #mainArticle table tr .tdLeft {
+  text-align: right;
+  padding: 0.5rem 1rem;
+}
+
+#pageContent #mainArticle table .highlighted {
+  background-color: #edc7b7;
+  margin: 0;
+}
+
+#pageContent #mainArticle button {
+  min-width: 10rem;
+  min-height: 2rem;
+  color: #ac3b61;
+  border: 2px solid #ac3b61;
+  background-color: #EEE2dc;
+  margin-top: 0.5rem;
+}
+
+#pageContent #mainArticle input, #pageContent #mainArticle textArea, #pageContent #mainArticle select {
+  min-width: 10rem;
+  border: 1px solid #ac3b61;
+  margin-bottom: 1rem;
+  background: #edc7b7;
+  color: #123c69;
+  padding: 0.5rem;
 }
 
 #pageContent #mainArticle #newMeal {
@@ -188,15 +231,8 @@ nav ul #mobileNavBtn button img {
   margin-bottom: 2rem;
 }
 
-#pageContent #mainArticle #newMeal input, #pageContent #mainArticle #newMeal textArea, #pageContent #mainArticle #newMeal select {
-  margin-bottom: 1rem;
-  background: #dcdcdc;
-  border-color: #dcdcdc;
-  color: #000000;
-}
-
 #pageContent #mainArticle #newMeal textarea {
-  width: 100%;
+  width: calc(100% - 1rem);
 }
 
 #pageContent #mainArticle #mealPage {
@@ -228,11 +264,11 @@ nav ul #mobileNavBtn button img {
 
 #pageContent #mainArticle #mealList li .mealPreview {
   text-decoration: none;
-  color: #000000;
+  color: #123c69;
 }
 
 #pageContent #mainArticle #mealList li .mealPreview div {
-  background: #dcdcdc;
+  background: #edc7b7;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -276,6 +312,9 @@ nav ul #mobileNavBtn button img {
   #pageContent #mainArticle {
     margin: 0rem;
   }
+  #pageContent #mainArticle #newMeal input, #pageContent #mainArticle #newMeal select {
+    width: calc(100% - 1rem);
+  }
   #pageContent #mainArticle #mealList li .mealPreview div {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -295,7 +334,9 @@ nav ul #mobileNavBtn button img {
 }
 
 footer {
-  background: #222222;
+  background: #EEE2dc;
+  -webkit-box-shadow: 0px 1px 28px none;
+          box-shadow: 0px 1px 28px none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -330,7 +371,7 @@ footer ul li {
 
 footer ul li a {
   text-decoration: none;
-  color: #ffffff;
+  color: #123c69;
 }
 
 @media screen and (max-width: 50rem) {
@@ -357,8 +398,8 @@ footer ul li a {
 }
 
 body {
-  background: #ffffff;
-  color: #000000;
+  background: #EEE2dc;
+  color: #123c69;
   padding: 0rem;
   margin: 0rem;
   width: 100%;

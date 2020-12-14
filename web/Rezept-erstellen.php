@@ -1,4 +1,4 @@
-<?php include("./templates/basicTemplateStart.html");?>
+<?php include("./templates/basicTemplateStart.php");?>
 
 <div id="newMeal">
     <h1>Neues Rezept erstellen</h1>
@@ -41,6 +41,8 @@
             <option value="4">tl</option>
             <option value="5">el</option>
             <option value="6">Tasse(n)</option>
+            <option value="7">st</option>
+            <option value="8">Etwas</option>
         </select>
         <input type="text" id="ingredientName_0" name="ingredientName_0" required="required">
     </div>

@@ -1,5 +1,7 @@
 footer{
-    background: #222222;
+    background: $primary-background-color;
+    
+    box-shadow: 0px 1px 28px $box-shadow-background-color;
 
     display: flex;
     flex-direction: row;
@@ -19,7 +21,7 @@ footer{
 
             a{
                 text-decoration: none;
-                color: #ffffff;
+                color: $primary-color;
             }
         }
     }

@@ -1,5 +1,5 @@
 <?php
-    include("./templates/basicTemplateStart.html");
+    include("./templates/basicTemplateStart.php");
     
     include("./mainPage.php");
 

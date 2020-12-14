@@ -1,7 +1,7 @@
 <?php
-    include("./templates/basicTemplateStart.html");
+    include("./templates/basicTemplateStart.php");
     
-    //
+    // Login Data
     $servername = "localhost";
     $username = "minemes";
     $password = "Familie";
@@ -46,8 +46,16 @@
     
     if ($result->num_rows > 0) {
         $ingredients = "";
+        $isHighlighted = TRUE;
         while($row = $result->fetch_assoc()) {
-            $ingredients = $ingredients. "<li>". $row["quantity"]. $row["unit"]. " ". $row["name"]. "</li>";
+            if($isHighlighted){
+                $ingredients = $ingredients. "<tr class='highlighted'>";
+                $isHighlighted = FALSE;
+            }else{
+                $ingredients = $ingredients. "<tr>";
+                $isHighlighted = TRUE;
+            }
+            $ingredients = $ingredients. "<td class='tdLeft'>". $row["quantity"]. $row["unit"]. "</td><td>". $row["name"]. "</td></tr>";
         }
         $template = preg_replace("~ingridiencePlaceholder~", $ingredients, $template);
     }else{
