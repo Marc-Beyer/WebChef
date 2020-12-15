@@ -1,29 +1,12 @@
 <?php
-    function exceptions_error_handler($severity, $message, $filename, $lineno) {
-        //echo"($message, 0, $severity, $filename, $lineno)";
-    }
-
-    set_error_handler('exceptions_error_handler');
-
-    //login-data
-    $servername = "localhost";
-    $username = "minemes";
-    $password = "Familie";
-    $dbname = "web_chef";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include("./templates/connectToDB.php");
 
     //Check if an image is uploaded
     if(isset($_FILES["file"])){
         // Get the image and check if the upload was successfull
         $mealImgName = uploadImage();
         if(strlen($mealImgName) <= 2){
-            echo "error #$mealImgName occurred!";
+            echo "Fehler #$mealImgName! Das Bild wurde nicht hochgeladen!";
             $mealImgName = NULL;
         }
     }

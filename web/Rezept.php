@@ -1,19 +1,6 @@
 <?php
     include("./templates/basicTemplateStart.php");
-    
-    // Login Data
-    $servername = "localhost";
-    $username = "minemes";
-    $password = "Familie";
-    $dbname = "web_chef";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include("./templates/connectToDB.php");
 
     $nr = intval($_GET["nr"]);
     $sql = "SELECT * FROM `tMeal` WHERE `M_ID`=". $nr;

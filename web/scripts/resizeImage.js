@@ -12,41 +12,37 @@ const createBtn = document.getElementById("createBtn");
 
 var imgFile = undefined;
 
+// Create a file from an img-blob
 function blobToFile(theBlob, fileName){
-    //A Blob() is almost a File() - it's just missing the two properties below which we will add
     theBlob.lastModifiedDate = new Date();
     theBlob.name = fileName;
     return theBlob;
 }
 
+// Add an event-listener to the submit button
 createBtn.addEventListener("click", function(e){
     sendPostRequest();
 });
 
+// Add an event-listener to the file-input and rezize the img-file
 fileInput.addEventListener("change", function(e){
     let file = e.target.files[0];
-    console.log("file", file);
-
     // Check if the file is an image
     if(file.type.match(/^image\/.*/)){
         let fileReader = new FileReader();
         fileReader.onload = function(e){
             let img = new Image();
             img.onload = function(e){
-                console.log("img", img);
-                console.log("canvas", canvas);
+                // Rezize the image
                 let ctx = canvas.getContext("2d");
                 canvas.width = img.width;
                 canvas.height = img.height;
                 canvas.width = 1000;
                 canvas.height = canvas.width * (img.height / img.width);
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                //imgFile = blobToFile(canvas.toDataURL('image/jpeg', 0.5), "img.jpg");
-                //console.log("imgFile", imgFile.name);
                 canvas.toBlob(function(blob){
+                    // Set the image
                     imgFile = blobToFile(blob, "img.jpg");
-                    console.log("imgFile", imgFile);
-                    console.log("imgFilename", imgFile.name);
                 }, 'image/jpeg', 0.95);
             };
             img.src = e.target.result;
@@ -57,6 +53,7 @@ fileInput.addEventListener("change", function(e){
 
 // Send a POST-request
 function sendPostRequest(){
+    // Get FormData
     var formData = new FormData();
     formData.append('mealNameInput', mealName.value);
     formData.append('mealTypeInput', mealType.value);
@@ -72,23 +69,9 @@ function sendPostRequest(){
         formData.append("ingredientName_" + index, document.getElementById("ingredientName_" + index).value);
     }
 
-    var json = JSON.stringify(
-        {
-            mealName : mealName.value,
-            mealType : mealType.value,
-            mealTime : mealTime.value,
-            mealDesc : mealDesc.value,
-            mealNr : mealNr.value,
-            ingredientsNr : ingredientsNr.value,
-            mealPrep : mealPrep.value,
-            file : imgFile
-        }
-    );
-    console.log("json", json);
-
+    // Send POST-request 
     var xhRequest = new XMLHttpRequest();
-    xhRequest.open("POST", "./finishMeal.php", true);
-    //xhRequest.setRequestHeader('Content-Type', 'application/json');
+    xhRequest.open("POST", "./Rezept-hochladen.php", true);
     xhRequest.onreadystatechange = (e) => {
         console.log(xhRequest.responseText);
         if(xhRequest.responseText.length > 1){
