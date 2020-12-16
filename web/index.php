@@ -49,7 +49,7 @@
                 $preparation_time = intval($row["preparation_time"]);
                 $preparation_time_h = intval($preparation_time / 60);
                 $preparation_time_min = $preparation_time % 60;
-                $echoString = preg_replace("~mealPrepTimePlaceholder~", " Dauer: ". $preparation_time_h. ":". $preparation_time_min. "h", $echoString);
+                $echoString = preg_replace("~mealPrepTimePlaceholder~", " Dauer: ". $preparation_time_h. ":". intval($preparation_time_min/10). ($preparation_time_min%10). "h", $echoString);
                 $echoString = preg_replace("~mealPrepTextPlaceholder~", $row["description"], $echoString);
                 $imgPath = $row["img"];
                 if(is_null($imgPath) || empty($imgPath)){
