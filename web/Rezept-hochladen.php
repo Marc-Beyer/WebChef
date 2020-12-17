@@ -1,12 +1,13 @@
 <?php
     include("./templates/connectToDB.php");
 
+    echo "SO DACHTE ICH DAS ABER NICHT ";
     //Check if an image is uploaded
     if(isset($_FILES["file"])){
         // Get the image and check if the upload was successfull
         $mealImgName = uploadImage();
         if(strlen($mealImgName) <= 2){
-            echo "Fehler #$mealImgName! Das Bild wurde nicht hochgeladen!";
+            echo "Fehler #10$mealImgName! Das Bild wurde nicht hochgeladen! ";
             $mealImgName = NULL;
         }
     }
@@ -35,9 +36,29 @@
     //Insert new meal into table
     $sql = "INSERT INTO `tMeal`(`M_ID`, `name`, `preparation_text`, `preparation_time`, `MT_ID`, `U_ID`, `is_public`, `description`, `img`) VALUES ($mID,'$mealName','$mealPrep','$preparationTime',$mealType,0,1,'$mealDesc', '$mealImgName')";
     $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        echo "Ein Fehler ist aufgetreten :(";
+    echo " $sql \n  ";
+    /*
+    echo "result->db->affected_rows() " . $result->db->affected_rows() ;
+    echo "result->errorInfo() " . $result->errorInfo();
+    echo "result->rowCount() " . $result->rowCount();
+    echo "result->num_rows" .$result->num_rows;
+    echo "result- " . $result;
+    if ($result->db->affected_rows() == 0) {
+        echo "Fehler #200 ist aufgetreten :( ";
     }
+    if($result->errorInfo()){
+        echo "Fehler #202 ist aufgetreten :( ";
+    }
+    if($result->rowCount() > 0){
+        echo "Fehler #203 ist aufgetreten :( ";
+    }
+    if ((gettype($result) == "object" && $result->num_rows == 0) || !$result) {
+        echo "Fehler #204 ist aufgetreten :( ";
+    }
+    if($result){
+        echo "Fehler #205 ist aufgetreten :( ";
+    }
+    */
 
     //Add all ingredience
     for ($i=0; $i < $ingredientsNr; $i++) { 
@@ -92,7 +113,7 @@
         $imageFileType = $_FILES["file"]["type"];
         $imageFileType = str_replace("image/", "", $imageFileType);
 
-        // Check if image file is a actual image or fake image
+        // Check if the image file is an actual image or a fake image
         if(isset($_POST["submit"])) {
             $check = getimagesize($_FILES["file"]["tmp_name"]);
             if($check == false){
@@ -100,7 +121,7 @@
             }
         }
 
-        // Check if file already exists
+        // Check if the file already exists
         $retrys = 0;
         while(file_exists("$target_dir$target_file.$imageFileType")) {
             $retrys++;

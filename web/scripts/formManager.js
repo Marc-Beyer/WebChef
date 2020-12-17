@@ -9,6 +9,8 @@ const mealNr = document.getElementById("mealNrInput");
 const ingredientsNr = document.getElementById("ingredientsNr");
 const mealPrep = document.getElementById("mealPrepInput");
 const createBtn = document.getElementById("createBtn");
+const mealImgInputErr = document.getElementById("mealImgInputErr");
+const error = document.getElementById("error");
 
 var imgFile = undefined;
 
@@ -43,11 +45,17 @@ fileInput.addEventListener("change", function(e){
                 canvas.toBlob(function(blob){
                     // Set the image
                     imgFile = blobToFile(blob, "img.jpg");
+                    canvas.hidden = false;
+                    mealImgInputErr.hidden = true;
                 }, 'image/jpeg', 0.95);
             };
             img.src = e.target.result;
         };
         fileReader.readAsDataURL(file);
+    }else{
+        canvas.hidden = true;
+        mealImgInputErr.textContent = "Die hochgeladene Datei scheint kein Bild zu sein...";
+        mealImgInputErr.hidden = false;
     }
 });
 
@@ -68,16 +76,21 @@ function sendPostRequest(){
         formData.append("ingredientUnit_" + index, document.getElementById("ingredientUnit_" + index).value);
         formData.append("ingredientName_" + index, document.getElementById("ingredientName_" + index).value);
     }
+    console.log("formData", formData);
 
     // Send POST-request 
     var xhRequest = new XMLHttpRequest();
     xhRequest.open("POST", "./Rezept-hochladen.php", true);
     xhRequest.onreadystatechange = (e) => {
-        console.log(xhRequest.responseText);
+        console.log("response:", xhRequest.responseText);
         if(xhRequest.responseText.length > 1){
-            alert(xhRequest.responseText);
+            error.textContent = xhRequest.responseText;
+            error.hidden = false;
+            error.scrollIntoView();
         }else{
-            window.open("./index.php", "_self");
+            error.hidden = false;
+            error.scrollIntoView();
+            //window.open("./index.php", "_self");
         }
     }
     xhRequest.send(formData);

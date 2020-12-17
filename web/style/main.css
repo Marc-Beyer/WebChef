@@ -190,6 +190,11 @@ nav ul #mobileNavBtn button img {
   color: #22f200;
 }
 
+#pageContent #mainArticle h1, #pageContent #mainArticle h2, #pageContent #mainArticle h3, #pageContent #mainArticle p, #pageContent #mainArticle div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #pageContent #mainArticle table {
   min-width: 70%;
   border-collapse: collapse;
@@ -200,9 +205,8 @@ nav ul #mobileNavBtn button img {
   padding: 0.5rem 1rem;
 }
 
-#pageContent #mainArticle table .highlighted {
+#pageContent #mainArticle table tr:nth-child(odd) {
   background-color: #2c2c2c;
-  margin: 0;
 }
 
 #pageContent #mainArticle button {
@@ -223,6 +227,10 @@ nav ul #mobileNavBtn button img {
   padding: 0.5rem;
 }
 
+#pageContent #mainArticle select {
+  padding: calc(0.5rem - 1px);
+}
+
 #pageContent #mainArticle #newMeal {
   -webkit-box-pack: left;
       -ms-flex-pack: left;
@@ -233,6 +241,24 @@ nav ul #mobileNavBtn button img {
 
 #pageContent #mainArticle #newMeal textarea {
   width: calc(100% - 1rem);
+}
+
+#pageContent #mainArticle #newMeal .noSpace {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#pageContent #mainArticle #newMeal .error {
+  border-left: 4px solid #d62424;
+  color: #d62424;
+  background: #222222;
+  font-weight: bold;
+  padding: 1rem;
+  margin-top: 0;
+}
+
+#pageContent #mainArticle #newMeal #ingredientsContainer {
+  margin-bottom: 1rem;
 }
 
 #pageContent #mainArticle #mealPage {
