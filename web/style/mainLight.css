@@ -243,6 +243,10 @@ nav ul #mobileNavBtn button img {
   width: calc(100% - 1rem);
 }
 
+#pageContent #mainArticle #newMeal canvas {
+  width: 100%;
+}
+
 #pageContent #mainArticle #newMeal .noSpace {
   margin-top: 0;
   margin-bottom: 0;

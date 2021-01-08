@@ -114,16 +114,15 @@
         $imageFileType = str_replace("image/", "", $imageFileType);
 
         // Check if the image file is an actual image or a fake image
-        if(isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["file"]["tmp_name"]);
-            if($check == false){
-                return "1";
-            }
+        $check = getimagesize($_FILES["file"]["tmp_name"]);
+        if($check == false){
+            return "1";
         }
 
         // Check if the file already exists
         $retrys = 0;
         while(file_exists("$target_dir$target_file.$imageFileType")) {
+            $target_file = generateRandomString(20);
             $retrys++;
             if($retrys > 100){
                 return "2";
